@@ -3,38 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
-	<style type="text/css">
-		em {font-weight: bold;
-			color: black;}
-
-		h1 {font-family: tahoma, helvetica, sans-serif;}
-		p  {	
-				font-weight: 400;
-				font-size:12pt;
-				font-family: arial, sans-serif;
-		    }
-
-		.especial {color: purple;}
-	</style>
+	<style>
+		p {margin: 0;}
+	</style>	
 </head>
 <body>
 	<script type="text/javascript">
-
-	var cadena1 = "Ingrese primer numero";
-	var cadena2 = "Ingrese numero 2";
-	var numero1, numero2;
-	var suma
-	 numero1 = window.prompt(cadena1)
-	 numero2 = window.prompt(cadena2)
-	 numero1 = parseInt(numero1)
-	 numero2 = parseInt(numero2);
-	suma = numero1 + numero2
-		document.write("<h1> La suma es" + suma + "<h1>");
+	
+	document.writeln("<h1>Obtener los cuadrado de los número del uno al 10</h1>");
+	for(var i =1; i <=10; i++)
+		document.writeln("<p>El cuadrado de " + i + " es " + cuadrado(i) + "</p>");
+	
+	function cuadrado(y)
+	{
+		return y*y;
+	}
 	</script>
-
-	
-
-	
-
 </body>
 </html>
