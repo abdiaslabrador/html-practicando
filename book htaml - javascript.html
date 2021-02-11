@@ -4,6 +4,14 @@
 	<meta charset="utf-8">
 	<title>Frecuencia al tirar los dados</title>	
 </head>
+<style>
+		table { border-collapse: collapse;
+				border: 1px solid black;
+				margin: 10px;
+				}
+		th { background-color:crimson;}
+		td {border: 1px solid black;}
+</style>
 <body>
 	<p>
 		<img id="dado1" src="imagenes/blanco.png" alt="imagen de dado 1">
@@ -28,8 +36,8 @@
 	<div id = "divTablaFrecuencia"></div>
 
 	<script type="text/javascript">
-		var frecuencias = [0,0,0, 0,0,0 ,0,0,0, 0,0,0]
-		var totalTiros
+		var frecuencias = [0,0,0, 0,0,0]
+		var totalTiros = 0
 		
 		function iniciar()
 		{
@@ -60,6 +68,11 @@
 		{
 			frecuencias[i-1]++;
 		}
+		
+		function valorPorcentaje(num)
+		{	
+			return (num/totalTiros) * 100
+		}
 
 		function actualizarTablaFrecuencia()
 		{
@@ -69,13 +82,18 @@
 			"<thead><th>Cara</th>" +
 				   "<th>Frecuencia</th>" +
 				   "<th>Porcentaje</th></thead>" +
-			"<tbody><tr><td>1</td><td>"+ frecuencias[0] + "</td><td>" +  "</td></tr></tbody>"
+			"<tbody>"+ 
+			"<tr><td>1</td><td>"+ frecuencias[0] + "</td><td>" + valorPorcentaje(frecuencias[0]).toFixed(2) +"</td></tr>" +
+			"<tr><td>1</td><td>"+ frecuencias[1] + "</td><td>" + valorPorcentaje(frecuencias[1]).toFixed(2) + "</td></tr>" +
+			"<tr><td>1</td><td>"+ frecuencias[2] + "</td><td>"+ valorPorcentaje(frecuencias[2]).toFixed(2) +"</td></tr>" +
+
+			"<tr><td>1</td><td>"+ frecuencias[3] + "</td><td>"+ valorPorcentaje(frecuencias[3]).toFixed(2) +"</td></tr>" +
+			"<tr><td>1</td><td>"+ frecuencias[4] + "</td><td>"+ valorPorcentaje(frecuencias[4]).toFixed(2) +"</td></tr>" +
+			"<tr><td>1</td><td>"+ frecuencias[5] + "</td><td>"+ valorPorcentaje(frecuencias[5]).toFixed(2) +"</td></tr>" +
+			 "</tbody>"
 			
 		}
 		window.addEventListener("load", iniciar, false);
-
-		//Esta parte le toca a Abdías
-		//formatoPorcentaje(frecuencias[0], totalDados)
 	</script>
 </body>
 </html>
