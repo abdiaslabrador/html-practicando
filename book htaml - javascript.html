@@ -2,55 +2,82 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Imágenes aleatorias de dados</title>
-	<style>
-		li {display: inline; margin-right: 10px;}
-		ul {margin: 0;asdfasdf}
-	</style>
-		
+	<title>Frecuencia al tirar los dados</title>	
 </head>
 <body>
-	
+	<p>
+		<img id="dado1" src="imagenes/blanco.png" alt="imagen de dado 1">
+		<img id="dado2" src="imagenes/blanco.png" alt="imagen de dado 2">
+		<img id="dado3" src="imagenes/blanco.png" alt="imagen de dado 3">
+		<img id="dado4" src="imagenes/blanco.png" alt="imagen de dado 4">
+		<img id="dado5" src="imagenes/blanco.png" alt="imagen de dado 5">
+		<img id="dado6" src="imagenes/blanco.png" alt="imagen de dado 6">
+	</p>
+	<p>
+		<img id="dado7" src="imagenes/blanco.png" alt="imagen de dado 7">
+		<img id="dado8" src="imagenes/blanco.png" alt="imagen de dado 8">
+		<img id="dado9" src="imagenes/blanco.png" alt="imagen de dado 9">
+		<img id="dado10" src="imagenes/blanco.png" alt="imagen de dado 10">
+		<img id="dado11" src="imagenes/blanco.png" alt="imagen de dado 11">
+		<img id="dado12" src="imagenes/blanco.png" alt="imagen de dado 12">
+	</p>
+
 	<form action="#">
 		<input id="botonTirar" type="button" value="Tirar dados">
 	</form>
-	<ol>
-		<li><img id="dado1" src="imagenes/blanco.png" alt="imagen en blanco"></li>
-		<li><img id="dado2" src="imagenes/blanco.png" alt="imagen en blanco"></li>
-		<li><img id="dado3" src="imagenes/blanco.png" alt="imagen en blanco"></li>
-		<li><img id="dado4" src="imagenes/blanco.png" alt="imagen en blanco"></li>
-	</ol>
+	<div id = "divTablaFrecuencia"></div>
+
 	<script type="text/javascript">
-		var imagenDado1;
-		var imagenDado2;
-		var imagenDado3;
-		var imagenDado4;
-	
+		var frecuencias = [0,0,0, 0,0,0 ,0,0,0, 0,0,0]
+		var totalTiros
+		
 		function iniciar()
 		{
 				var boton = document.getElementById("botonTirar");
 				boton.addEventListener("click", tirarDados, false);
-				imagenDado1 = document.getElementById("dado1");
-				imagenDado2 = document.getElementById("dado2");
-				imagenDado3 = document.getElementById("dado3");
-				imagenDado4 = document.getElementById("dado4");
 		}
 	
 		function tirarDados()
-		{
-			establecerImagen(imagenDado1);
-			establecerImagen(imagenDado2);
-			establecerImagen(imagenDado3);
-			establecerImagen(imagenDado4);
+		{	
+
+			for(var i = 1; i <=12; i++)
+			{	var valorDado = Math.floor(1 + Math.random() * 6); 
+				var cara = document.getElementById("dado" + i)
+				establecerImagen(cara, valorDado)
+				sumaTiros(valorDado)
+				actualizarTablaFrecuencia()
+				totalTiros++;
+			}
 		}
-	
-		function establecerImagen(imgDado)
+
+		function establecerImagen(imgDado, valorDado)
 		{
-			var valorDado = Math.floor(1 + Math.random() * 6);
 			imgDado.setAttribute("src", "imagenes/dado" + valorDado + ".png");
-			imgDado.setAttribute("alt", "imagen de dado con " + valorDado + " puntos(s)")
+			imgDado.setAttribute("alt", "imagen de dado con " + valorDado + " puntos(s)");
+		}
+
+		function sumaTiros(i)
+		{
+			frecuencias[i-1]++;
+		}
+
+		function actualizarTablaFrecuencia()
+		{
+			var table = document.getElementById("divTablaFrecuencia")
+			table.innerHTML = "<table>" + 
+			"<caption>Frecuencia de tiros de dados</caption>" + 
+			"<thead><th>Cara</th>" +
+				   "<th>Frecuencia</th>" +
+				   "<th>Porcentaje</th></thead>" +
+			"<tbody><tr><td>1</td><td>"+ frecuencias[0] + "</td><td>" +  "</td></tr></tbody>"
+			
 		}
 		window.addEventListener("load", iniciar, false);
-		</script>
+
+		//Esta parte le toca a Abdías
+		//formatoPorcentaje(frecuencias[0], totalDados)
+	</script>
 </body>
 </html>
+
+
