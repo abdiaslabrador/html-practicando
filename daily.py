@@ -8,4 +8,6 @@ ar = [(259, 'NO CHANCE'), (258, 'EN CLASE'), (253, 'FINALIZADO'),
 
 ar = list(filter(lambda x: x[1] == 'FINALIZADO', ar))
 print("Otra modificacion")
+
+lista = ["asdf", "asdfsdf", "asdfasf", "asdfli"]
 print(ar)
