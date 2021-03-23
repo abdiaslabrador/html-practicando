@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Frecuencia al tirar los dados</title>	
+</head>
+<style>
+		table { border-collapse: collapse;
+				border: 1px solid black;
+				margin: 10px;
+				}
+		th { background-color:crimson;}
+		td {border: 1px solid black;}
+</style>
+<body>
+	<p>
+		<img id="dado1" src="imagenes/blanco.png" alt="imagen de dado 1">
+		<img id="dado2" src="imagenes/blanco.png" alt="imagen de dado 2">
+		<img id="dado3" src="imagenes/blanco.png" alt="imagen de dado 3">
+		<img id="dado4" src="imagenes/blanco.png" alt="imagen de dado 4">
+		<img id="dado5" src="imagenes/blanco.png" alt="imagen de dado 5">
+		<img id="dado6" src="imagenes/blanco.png" alt="imagen de dado 6">
+	</p>
+	<p>
+		<img id="dado7" src="imagenes/blanco.png" alt="imagen de dado 7">
+		<img id="dado8" src="imagenes/blanco.png" alt="imagen de dado 8">
+		<img id="dado9" src="imagenes/blanco.png" alt="imagen de dado 9">
+		<img id="dado10" src="imagenes/blanco.png" alt="imagen de dado 10">
+		<img id="dado11" src="imagenes/blanco.png" alt="imagen de dado 11">
+		<img id="dado12" src="imagenes/blanco.png" alt="imagen de dado 12">
+	</p>
+
+	<form action="#">
+		<input id="botonTirar" type="button" value="Tirar dados">
+	</form>
+	<div id = "divTablaFrecuencia"></div>
+
+	<script type="text/javascript">
+		var frecuencias = [0,0,0, 0,0,0]
+		var totalTiros = 0
+		
+		function iniciar()
+		{
+				var boton = document.getElementById("botonTirar");
+				boton.addEventListener("click", tirarDados, false);
+		}
+	
+		function tirarDados()
+		{	
+
+			for(var i = 1; i <=12; i++)
+			{	var valorDado = Math.floor(1 + Math.random() * 6); 
+				var cara = document.getElementById("dado" + i)
+				establecerImagen(cara, valorDado)
+				sumaTiros(valorDado)
+				actualizarTablaFrecuencia()
+				totalTiros++;
+			}
+		}
+
+		function establecerImagen(imgDado, valorDado)
+		{
+			imgDado.setAttribute("src", "imagenes/dado" + valorDado + ".png");
+			imgDado.setAttribute("alt", "imagen de dado con " + valorDado + " puntos(s)");
+		}
+
+		function sumaTiros(i)
+		{
+			frecuencias[i-1]++;
+		}
+		
+		function valorPorcentaje(num)
+		{	
+			return (num/totalTiros) * 100
+		}
+
+		function actualizarTablaFrecuencia()
+		{
+			var table = document.getElementById("divTablaFrecuencia")
+			table.innerHTML = "<table>" + 
+			"<caption>Frecuencia de tiros de dados</caption>" + 
+			"<thead><th>Cara</th>" +
+				   "<th>Frecuencia</th>" +
+				   "<th>Porcentaje</th></thead>" +
+			"<tbody>"+ 
+			"<tr><td>1</td><td>"+ frecuencias[0] + "</td><td>" + valorPorcentaje(frecuencias[0]).toFixed(2) +"</td></tr>" +
+			"<tr><td>1</td><td>"+ frecuencias[1] + "</td><td>" + valorPorcentaje(frecuencias[1]).toFixed(2) + "</td></tr>" +
+			"<tr><td>1</td><td>"+ frecuencias[2] + "</td><td>"+ valorPorcentaje(frecuencias[2]).toFixed(2) +"</td></tr>" +
+
+			"<tr><td>1</td><td>"+ frecuencias[3] + "</td><td>"+ valorPorcentaje(frecuencias[3]).toFixed(2) +"</td></tr>" +
+			"<tr><td>1</td><td>"+ frecuencias[4] + "</td><td>"+ valorPorcentaje(frecuencias[4]).toFixed(2) +"</td></tr>" +
+			"<tr><td>1</td><td>"+ frecuencias[5] + "</td><td>"+ valorPorcentaje(frecuencias[5]).toFixed(2) +"</td></tr>" +
+			 "</tbody>"
+			
+		}
+		window.addEventListener("load", iniciar, false);
+	</script>
+</body>
+</html>
+
+
